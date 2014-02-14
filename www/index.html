@@ -48,78 +48,86 @@ h1 {
 var map;
 function addmap() {
 	// GENERATED
-var base = {
-	'mapnik': L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		name: 'mapnik', minZoom: 0, maxZoom: 19,
-		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a>'
-	}),
-	'osm-de': L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
-		name: 'osm-de', minZoom: 0, maxZoom: 18, subdomains: 'abc',
-		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy <a href=\"http://openstreetmap.de/\">OSM DE</a>'
-	}),
-	'osm-fr': L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
-		name: 'osm-fr', minZoom: 0, maxZoom: 20, subdomains: 'abc',
-		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy <a href=\"http://tile.openstreetmap.fr/\">OSM France</a>'
-	}),
-	'cyclemap': L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
-		name: 'cyclemap', minZoom: 0, maxZoom: 17, subdomains: 'abc',
-		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
-	}),
-	'opnv': L.tileLayer('http://tile.öpnvkarte.de/tilegen/{z}/{x}/{y}.png', {
-		name: 'opnv', minZoom: 0, maxZoom: 18,
-		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a>'
-	}),
-	'mapsurfer': L.tileLayer('http://openmapsurfer.uni-hd.de/tiles/roads/x={x}&y={y}&z={z}', {
-		name: 'mapsurfer', minZoom: 0, maxZoom: 19,
-		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://giscience.uni-hd.de/\">GIScience Heidelberg</a>'
-	}),
-	'humanitarian': L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-		name: 'humanitarian', minZoom: 0, maxZoom: 19, subdomains: 'abc',
-		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://hot.openstreetmap.org\">Humanitarian OSM Team</a>'
-	}),
-	'transport': L.tileLayer('http://{s}.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png', {
-		name: 'transport', minZoom: 0, maxZoom: 18, subdomains: 'abc',
-		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
-	}),
-	'landscape': L.tileLayer('http://{s}.tile3.opencyclemap.org/landscape/{z}/{x}/{y}.png', {
-		name: 'landscape', minZoom: 0, maxZoom: 18, subdomains: 'abc',
-		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
-	}),
-	'outdoors': L.tileLayer('http://{s}.tile.opencyclemap.org/outdoors/{z}/{x}/{y}.png', {
-		name: 'outdoors', minZoom: 0, maxZoom: 18, subdomains: 'abc',
-		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
-	}),
-	'mapquest': L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
-		name: 'mapquest', minZoom: 0, maxZoom: 18, subdomains: '1234',
-		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.mapquest.com/\">MapQuest</a>'
-	}),
-	'toner': L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
-		name: 'toner', minZoom: 0, maxZoom: 20, subdomains: 'abc',
-		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://stamen.com\">Stamen Design</a>'
-	}),
-	'toner-lite': L.tileLayer('http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', {
-		name: 'toner-lite', minZoom: 0, maxZoom: 20, subdomains: 'abc',
-		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://stamen.com\">Stamen Design</a>'
-	}),
-	'watercolor': L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png', {
-		name: 'watercolor', minZoom: 3, maxZoom: 16, subdomains: 'abc',
-		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://stamen.com\">Stamen Design</a>'
-	})
-};
-var overlay = {
-	'openseamap': L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
-		name: 'openseamap', minZoom: 0, maxZoom: 18,
-		attribution: ''
-	}),
-	'contours-ms': L.tileLayer('http://openmapsurfer.uni-hd.de/tiles/asterc/x={x}&y={y}&z={z}', {
-		name: 'contours-ms', minZoom: 13, maxZoom: 17,
-		attribution: 'Contours &copy; <a href=\"http://giscience.uni-hd.de/\">GIScience Heidelberg</a>'
-	}),
-	'pt': L.tileLayer('http://pt.openmap.lt/{z}/{x}/{y}.png', {
-		name: 'pt', minZoom: 0, maxZoom: 18,
-		attribution: 'Routes &copy; <a href=\"http://openmap.lt\">openmap.lt</a>'
-	})
-};
+	var base = {
+		'mapnik': L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			name: 'mapnik', minZoom: 0, maxZoom: 19,
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a>'
+		}),
+		'osm-de': L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+			name: 'osm-de', minZoom: 0, maxZoom: 18, subdomains: 'abc',
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy <a href=\"http://openstreetmap.de/\">OSM DE</a>'
+		}),
+		'osm-fr': L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+			name: 'osm-fr', minZoom: 0, maxZoom: 20, subdomains: 'abc',
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy <a href=\"http://tile.openstreetmap.fr/\">OSM France</a>'
+		}),
+		'cyclemap': L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
+			name: 'cyclemap', minZoom: 0, maxZoom: 17, subdomains: 'abc',
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
+		}),
+		'opnv': L.tileLayer('http://tile.öpnvkarte.de/tilegen/{z}/{x}/{y}.png', {
+			name: 'opnv', minZoom: 0, maxZoom: 18,
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a>'
+		}),
+		'mapsurfer': L.tileLayer('http://openmapsurfer.uni-hd.de/tiles/roads/x={x}&y={y}&z={z}', {
+			name: 'mapsurfer', minZoom: 0, maxZoom: 19,
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://giscience.uni-hd.de/\">GIScience Heidelberg</a>'
+		}),
+		'hikebike': L.tileLayer('http://toolserver.org/tiles/hikebike/{z}/{x}/{y}.png', {
+			name: 'hikebike', minZoom: 0, maxZoom: 18,
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://hikebikemap.de/\">Colin Marquardt</a>'
+		}),
+		'humanitarian': L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+			name: 'humanitarian', minZoom: 0, maxZoom: 19, subdomains: 'abc',
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://hot.openstreetmap.org\">Humanitarian OSM Team</a>'
+		}),
+		'transport': L.tileLayer('http://{s}.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png', {
+			name: 'transport', minZoom: 0, maxZoom: 18, subdomains: 'abc',
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
+		}),
+		'landscape': L.tileLayer('http://{s}.tile3.opencyclemap.org/landscape/{z}/{x}/{y}.png', {
+			name: 'landscape', minZoom: 0, maxZoom: 18, subdomains: 'abc',
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
+		}),
+		'outdoors': L.tileLayer('http://{s}.tile.opencyclemap.org/outdoors/{z}/{x}/{y}.png', {
+			name: 'outdoors', minZoom: 0, maxZoom: 18, subdomains: 'abc',
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
+		}),
+		'mapquest': L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
+			name: 'mapquest', minZoom: 0, maxZoom: 18, subdomains: '1234',
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.mapquest.com/\">MapQuest</a>'
+		}),
+		'toner': L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
+			name: 'toner', minZoom: 0, maxZoom: 20, subdomains: 'abc',
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://stamen.com\">Stamen Design</a>'
+		}),
+		'toner-lite': L.tileLayer('http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', {
+			name: 'toner-lite', minZoom: 0, maxZoom: 20, subdomains: 'abc',
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://stamen.com\">Stamen Design</a>'
+		}),
+		'watercolor': L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png', {
+			name: 'watercolor', minZoom: 3, maxZoom: 16, subdomains: 'abc',
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://stamen.com\">Stamen Design</a>'
+		})
+	};
+	var overlay = {
+		'openseamap': L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+			name: 'openseamap', minZoom: 0, maxZoom: 18,
+			attribution: ''
+		}),
+		'hills': L.tileLayer('http://toolserver.org/~cmarqu/hill/{z}/{x}/{y}.png', {
+			name: 'hills', minZoom: 0, maxZoom: 15,
+			attribution: ''
+		}),
+		'contours': L.tileLayer('http://openmapsurfer.uni-hd.de/tiles/asterc/x={x}&y={y}&z={z}', {
+			name: 'contours', minZoom: 13, maxZoom: 17,
+			attribution: 'Contours &copy; <a href=\"http://giscience.uni-hd.de/\">GIScience Heidelberg</a>'
+		}),
+		'pt': L.tileLayer('http://pt.openmap.lt/{z}/{x}/{y}.png', {
+			name: 'pt', minZoom: 0, maxZoom: 18,
+			attribution: 'Routes &copy; <a href=\"http://openmap.lt\">openmap.lt</a>'
+		})
+	};
 	// END GENERATED
 	map = L.map('map').setView([52, 11], 3);
 	var control = L.control.layers(base, overlay, { collapsed: true });

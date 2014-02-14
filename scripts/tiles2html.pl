@@ -23,15 +23,15 @@ while(<TILES>) {
 }
 close TILES;
 
-my $res = "var base = {\n";
+my $res = "\tvar base = {\n";
 $res .= print_code($_) foreach @base;
 $res =~ s/,\n$/\n/;
-$res .= "};\n";
+$res .= "\t};\n";
 
-$res .= "var overlay = {\n";
+$res .= "\tvar overlay = {\n";
 $res .= print_code($_) foreach @overlay;
 $res =~ s/,\n$/\n/;
-$res .= "};\n";
+$res .= "\t};\n";
 
 open INDEX, '>'.$wwwroot.'/index.html' or die "Cannot write to index.html: $!";
 my $print = 1;
@@ -59,9 +59,9 @@ sub print_code {
 	$attr =~ s/"/\\"/g;
 
 	my $res = '';
-	$res .= "\t'".$line->[0]."': L.tileLayer('$url', {\n";
-	$res .= "\t\tname: '".$line->[0]."', minZoom: ".$line->[2].", maxZoom: ".$line->[3].$sub.",\n";
-	$res .= "\t\tattribution: '$attr'\n";
-	$res .= "\t}),\n";
+	$res .= "\t\t'".$line->[0]."': L.tileLayer('$url', {\n";
+	$res .= "\t\t\tname: '".$line->[0]."', minZoom: ".$line->[2].", maxZoom: ".$line->[3].$sub.",\n";
+	$res .= "\t\t\tattribution: '$attr'\n";
+	$res .= "\t\t}),\n";
 	return $res;
 }
