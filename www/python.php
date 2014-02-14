@@ -18,7 +18,7 @@ from PIL import Image
 # ^^^^^^ install "python-pillow" package | pip install Pillow | easy_install Pillow
 
 (zoom, xmin, ymin, xmax, ymax) = (<?=$zoom ?>, <?=$xmin ?>, <?=$ymin ?>, <?=$xmax ?>, <?=$ymax ?>)
-layers = (<?=$l ?>)
+layers = [<?=$l ?>]
 xsize = xmax - xmin + 1
 ysize = ymax - ymin + 1
 
