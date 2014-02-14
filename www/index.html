@@ -1,0 +1,204 @@
+﻿<!doctype html>
+<html>
+<head>
+<title>BigMap 2</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+<style>
+body {
+	text-align: center;
+	font-family: sans-serif;
+}
+h1 {
+	font-size: 24pt;
+}
+#map {
+	width: 800px;
+	margin: 0 auto;
+	height: 500px;
+	text-align: left;
+}
+#submit {
+	margin: 1em;
+	font-size: 24pt;
+}
+#footer {
+	font-size: 10pt;
+	font-style: italic;
+}
+</style>
+</head>
+<body onload="javascript:addmap();">
+<h1>BigMap 2</h1>
+<p>Zoom to an area you want to have an image of, or paste map URL here:
+<input type="text" size="40" id="url" value="" onchange="javascript:processURLInput();"><input type="button" value="!" onclick="javascript:processURLInput();"></p>
+<div id="map"></div>
+<form action="bigmap.php" method="get" onsubmit="javascript:getdata(this);">
+<input type="hidden" name="zoom" value="">
+<input type="hidden" name="xmin" value="">
+<input type="hidden" name="ymin" value="">
+<input type="hidden" name="xmax" value="">
+<input type="hidden" name="ymax" value="">
+<input type="hidden" name="tiles" value="mapnik">
+<input type="submit" id="submit" value="Submit">
+</form>
+<p id="footer">Based on <a href="http://wiki.openstreetmap.org/wiki/Bigmap">Bigmap</a>. Source code is published on <a href="https://github.com/zverik/bigmap2">github</a>.</p>
+<script>
+var map;
+function addmap() {
+	// GENERATED
+var base = {
+	'mapnik': L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		name: 'mapnik', minZoom: 0, maxZoom: 19,
+		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a>'
+	}),
+	'osm-de': L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+		name: 'osm-de', minZoom: 0, maxZoom: 18, subdomains: 'abc',
+		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy <a href=\"http://openstreetmap.de/\">OSM DE</a>'
+	}),
+	'osm-fr': L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+		name: 'osm-fr', minZoom: 0, maxZoom: 20, subdomains: 'abc',
+		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy <a href=\"http://tile.openstreetmap.fr/\">OSM France</a>'
+	}),
+	'cyclemap': L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
+		name: 'cyclemap', minZoom: 0, maxZoom: 17, subdomains: 'abc',
+		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
+	}),
+	'opnv': L.tileLayer('http://tile.öpnvkarte.de/tilegen/{z}/{x}/{y}.png', {
+		name: 'opnv', minZoom: 0, maxZoom: 18,
+		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a>'
+	}),
+	'mapsurfer': L.tileLayer('http://openmapsurfer.uni-hd.de/tiles/roads/x={x}&y={y}&z={z}', {
+		name: 'mapsurfer', minZoom: 0, maxZoom: 19,
+		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://giscience.uni-hd.de/\">GIScience Heidelberg</a>'
+	}),
+	'humanitarian': L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+		name: 'humanitarian', minZoom: 0, maxZoom: 19, subdomains: 'abc',
+		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://hot.openstreetmap.org\">Humanitarian OSM Team</a>'
+	}),
+	'transport': L.tileLayer('http://{s}.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png', {
+		name: 'transport', minZoom: 0, maxZoom: 18, subdomains: 'abc',
+		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
+	}),
+	'landscape': L.tileLayer('http://{s}.tile3.opencyclemap.org/landscape/{z}/{x}/{y}.png', {
+		name: 'landscape', minZoom: 0, maxZoom: 18, subdomains: 'abc',
+		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
+	}),
+	'outdoors': L.tileLayer('http://{s}.tile.opencyclemap.org/outdoors/{z}/{x}/{y}.png', {
+		name: 'outdoors', minZoom: 0, maxZoom: 18, subdomains: 'abc',
+		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
+	}),
+	'mapquest': L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
+		name: 'mapquest', minZoom: 0, maxZoom: 18, subdomains: '1234',
+		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.mapquest.com/\">MapQuest</a>'
+	}),
+	'toner': L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
+		name: 'toner', minZoom: 0, maxZoom: 20, subdomains: 'abc',
+		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://stamen.com\">Stamen Design</a>'
+	}),
+	'toner-lite': L.tileLayer('http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', {
+		name: 'toner-lite', minZoom: 0, maxZoom: 20, subdomains: 'abc',
+		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://stamen.com\">Stamen Design</a>'
+	}),
+	'watercolor': L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png', {
+		name: 'watercolor', minZoom: 3, maxZoom: 16, subdomains: 'abc',
+		attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://stamen.com\">Stamen Design</a>'
+	})
+};
+var overlay = {
+	'openseamap': L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+		name: 'openseamap', minZoom: 0, maxZoom: 18,
+		attribution: ''
+	}),
+	'contours-ms': L.tileLayer('http://openmapsurfer.uni-hd.de/tiles/asterc/x={x}&y={y}&z={z}', {
+		name: 'contours-ms', minZoom: 13, maxZoom: 17,
+		attribution: 'Contours &copy; <a href=\"http://giscience.uni-hd.de/\">GIScience Heidelberg</a>'
+	}),
+	'pt': L.tileLayer('http://pt.openmap.lt/{z}/{x}/{y}.png', {
+		name: 'pt', minZoom: 0, maxZoom: 18,
+		attribution: 'Routes &copy; <a href=\"http://openmap.lt\">openmap.lt</a>'
+	})
+};
+	// END GENERATED
+	map = L.map('map').setView([52, 11], 3);
+	var control = L.control.layers(base, overlay, { collapsed: true });
+	map.addControl(control);
+	map.addLayer(base.mapnik);
+
+	if( /(\d+)\/([0-9.-]+)\/([0-9.-]+)/.test(window.location.href) )
+		processURL(window.location.href);
+}
+
+function processURL(url) {
+	var m, lat, lon, zoom = -1, layer;
+	if( url.indexOf('lat=') > 0 ) {
+		m = /[?&]lat=([0-9.-]+)/.exec(url);
+		if( m ) lat = m[1];
+		m = /[?&]lon=([0-9.-]+)/.exec(url);
+		if( m ) lon = m[1];
+		m = /[?&]zoom=([0-9.-]+)/.exec(url);
+		zoom = m ? m[1] : 12;
+	} else {
+		m = /(\d+)\/([0-9.-]+)\/([0-9.-]+)/.exec(url);
+		if( m ) {
+			zoom = m[1];
+			lat	= m[2];
+			lon = m[3];
+		}
+	}
+	if( !lat || !lon )
+		return;
+	m = /[?&#]layers?=([0-9A-Za-z])/.exec(url);
+	var l = m ? m[1] : '';
+	if( /(?:osm|openstreetmap)\.org/.test(url) ) {
+		if( l == 'C' ) layer = 'cyclemap';
+		else if( l == 'T' ) layer = 'transport';
+		else if( l == 'Q' ) layer = 'mapquest';
+		else if( l == 'H' ) layer = 'humanitarian';
+		else layer = 'mapnik';
+	} else if( /openstreetmap\.ru/.test(url) ) {
+		if( l == 'M' ) layer = 'mapnik';
+		else if( l == 'Q' ) layer = 'mapquest';
+		else if( l == 'C' ) layer = 'cyclemap';
+		else if( l == 'H' ) layer = 'humanitarian';
+		else layer = 'mapsurfer';
+	} else if( /openstreetmap\.de/.test(url) )
+		layer = 'osm-de';
+	if( !layer || !base[layer] )
+		layer = 'mapnik';
+	map.setView([lat, lon], zoom);
+	if( !map.hasLayer(base[layer]) ) {
+		map.eachLayer(function(l) { map.removeLayer(l); });
+		map.addLayer(base[layer]);
+	}
+}
+
+function processURLInput() {
+	var input = document.getElementById('url');
+	if( input.value === '' ) return;
+	processURL(input.value);
+	input.value = '';
+}
+
+// from http://wiki.openstreetmap.org/wiki/Slippy_map_tilenames
+function lon2tile(lon, zoom) { return (Math.floor((lon+180)/360*Math.pow(2,zoom))); }
+function lat2tile(lat, zoom) { return (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom))); }
+
+function getdata(f) {
+	var z = map.getZoom(), b = map.getBounds();
+	f.elements['zoom'].value = z;
+	f.elements['xmin'].value = lon2tile(b.getWest(), z);
+	f.elements['xmax'].value = lon2tile(b.getEast(), z);
+	f.elements['ymin'].value = lat2tile(b.getNorth(), z);
+	f.elements['ymax'].value = lat2tile(b.getSouth(), z);
+	var layers = '';
+	map.eachLayer(function(l) {
+		if( layers.length ) layers += '|';
+		layers += l.options.name;
+	});
+	f.elements['tiles'].value = layers;
+}
+</script>
+</body>
+</html>

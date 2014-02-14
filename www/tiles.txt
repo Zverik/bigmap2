@@ -1,0 +1,24 @@
+#name,overlay?,minzoom,maxzoom,url,tile attribution
+
+mapnik,0,0,19,http://tile.openstreetmap.org/!z/!x/!y.png,
+osm-de,0,0,18,http://{abc}.tile.openstreetmap.de/tiles/osmde/!z/!x/!y.png,Tiles &copy <a href="http://openstreetmap.de/">OSM DE</a>
+osm-fr,0,0,20,http://{abc}.tile.openstreetmap.fr/osmfr/!z/!x/!y.png,Tiles &copy <a href="http://tile.openstreetmap.fr/">OSM France</a>
+
+cyclemap,0,0,17,http://{abc}.tile.opencyclemap.org/cycle/!z/!x/!y.png,Tiles &copy; <a href="http://www.opencyclemap.org">Andy Allan</a>
+opnv,0,0,18,http://tile.öpnvkarte.de/tilegen/!z/!x/!y.png,
+mapsurfer,0,0,19,http://openmapsurfer.uni-hd.de/tiles/roads/x=!x&y=!y&z=!z,Tiles &copy; <a href="http://giscience.uni-hd.de/">GIScience Heidelberg</a>
+#hikebike,0,0,18,http://toolserver.org/tiles/hikebike/!z/!x/!y.png,Tiles &copy; <a href="http://hikebikemap.de/">Colin Marquardt</a>
+humanitarian,0,0,19,http://{abc}.tile.openstreetmap.fr/hot/!z/!x/!y.png,Tiles &copy; <a href="http://hot.openstreetmap.org">Humanitarian OSM Team</a>
+transport,0,0,18,http://{abc}.tile2.opencyclemap.org/transport/!z/!x/!y.png,Tiles &copy; <a href="http://www.opencyclemap.org">Andy Allan</a>
+landscape,0,0,18,http://{abc}.tile3.opencyclemap.org/landscape/!z/!x/!y.png,Tiles &copy; <a href="http://www.opencyclemap.org">Andy Allan</a>
+outdoors,0,0,18,http://{abc}.tile.opencyclemap.org/outdoors/!z/!x/!y.png,Tiles &copy; <a href="http://www.opencyclemap.org">Andy Allan</a>
+mapquest,0,0,18,http://otile{1234}.mqcdn.com/tiles/1.0.0/map/!z/!x/!y.jpeg,Tiles &copy; <a href="http://www.mapquest.com/">MapQuest</a>
+toner,0,0,20,http://{abc}.tile.stamen.com/toner/!z/!x/!y.png,Tiles &copy; <a href="http://stamen.com">Stamen Design</a>
+toner-lite,0,0,20,http://{abc}.tile.stamen.com/toner-lite/!z/!x/!y.png,Tiles &copy; <a href="http://stamen.com">Stamen Design</a>
+watercolor,0,3,16,http://{abc}.tile.stamen.com/watercolor/!z/!x/!y.png,Tiles &copy; <a href="http://stamen.com">Stamen Design</a>
+
+openseamap,1,0,18,http://tiles.openseamap.org/seamark/!z/!x/!y.png,
+#hills,1,0,17,http://toolserver.org/~cmarqu/hill/!z/!x/!y.png,
+contours-ms,1,13,17,http://openmapsurfer.uni-hd.de/tiles/asterc/x=!x&y=!y&z=!z,Contours &copy; <a href="http://giscience.uni-hd.de/">GIScience Heidelberg</a>
+#contours-hb,1,0,18,http://toolserver.org/~cmarqu/opentiles.com/cmarqu/tiles_contours_8/!z/!x/!y.png,
+pt,1,0,18,http://pt.openmap.lt/!z/!x/!y.png,Routes &copy; <a href="http://openmap.lt">openmap.lt</a>
