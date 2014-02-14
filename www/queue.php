@@ -39,7 +39,7 @@ if( defined('IN_BIGMAP') ) {
 			mkdir($workpath.'/tasks');
 		$task = fopen($workpath.'/tasks/'.$taskid, 'w');
 		if( $task ) {
-			$place = nominatim();
+			$place = nominatim(($lat_min + $lat_max) / 2, ($lon_min + $lon_max) / 2);
 			// start time; status; last time; ident; layer urls; attribution; nominatim response
 			fwrite($task, time()."\n0,".time()."\n");
 			fwrite($task, "$ident\n");
@@ -65,14 +65,14 @@ function get_taskid() {
 	return $t.(time() - 1390000000);
 }
 
-function nominatim() {
-	global $lat_min, $lat_max, $lon_min, $lon_max, $zoom;
+function nominatim($lat, $lon) {
+	global $zoom;
 	$url = 'http://nominatim.openstreetmap.org/reverse?format=json&zoom='.min($zoom, 8).'&addressdetails=0'
-			.'&email='.urlencode($email).'&lat='.(($lat_min + $lat_max) / 2).'&lon='.(($lon_min + $lon_max) / 2);
+			.'&email='.urlencode($email).'&lat='.$lat.'&lon='.$lon;
 	$response = json_decode(file_get_contents($url), true);
 	if( isset($response) && isset($response['display_name']) )
 		return $response['display_name'];
-	return 'Unknown place';
+	return sprintf('Unknown place (%.2f, %.2f)', $lat, $lon);
 }
 
 function get_queue_pos($taskid) {
