@@ -9,8 +9,8 @@ $xmin = max(0, req_num('xmin'));
 $ymin = max(0, req_num('ymin'));
 $xmax = min($zoom2 - 1, req_num('xmax'));
 $ymax = min($zoom2 - 1, req_num('ymax'));
-if( $xmin > $xmax ) { $tmp = $xmin; $xmin = $xmax; $xmax = $tmp; }
-if( $ymin > $ymax ) { $tmp = $ymin; $ymin = $ymax; $ymax = $tmp; }
+if( $xmax < $xmin ) $xmax = $xmin;
+if( $ymax < $ymin ) $ymax = $ymin;
 $xsize = $xmax - $xmin + 1;
 $ysize = $ymax - $ymin + 1;
 $llmin = tile2latlon($xmin, $ymax);
