@@ -59,7 +59,7 @@ function get_layers($tiles, $zoom) {
 			if( in_array($layer[0], $needed) && (count($result) ? $layer[1] : !$layer[1]) && $layer[2] <= $zoom && $layer[3] >= $zoom ) {
 				$result[] = $layer[4];
 				if( strlen($layer[5]) )
-					$attribution .= ' | '.$layer[5];
+					$attribution .= ', '.$layer[5];
 			}
 			if( count($result) >= 4 )
 				break;

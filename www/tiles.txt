@@ -1,8 +1,8 @@
 #name,overlay?,minzoom,maxzoom,url,tile attribution
 
 mapnik,0,0,19,http://tile.openstreetmap.org/!z/!x/!y.png,
-osm-de,0,0,18,http://{abc}.tile.openstreetmap.de/tiles/osmde/!z/!x/!y.png,Tiles &copy <a href="http://openstreetmap.de/">OSM DE</a>
-osm-fr,0,0,20,http://{abc}.tile.openstreetmap.fr/osmfr/!z/!x/!y.png,Tiles &copy <a href="http://tile.openstreetmap.fr/">OSM France</a>
+osm-de,0,0,18,http://{abc}.tile.openstreetmap.de/tiles/osmde/!z/!x/!y.png,Tiles &copy; <a href="http://openstreetmap.de/">OSM DE</a>
+osm-fr,0,0,20,http://{abc}.tile.openstreetmap.fr/osmfr/!z/!x/!y.png,Tiles &copy; <a href="http://tile.openstreetmap.fr/">OSM France</a>
 
 cyclemap,0,0,17,http://{abc}.tile.opencyclemap.org/cycle/!z/!x/!y.png,Tiles &copy; <a href="http://www.opencyclemap.org">Andy Allan</a>
 opnv,0,0,18,http://tile.öpnvkarte.de/tilegen/!z/!x/!y.png,

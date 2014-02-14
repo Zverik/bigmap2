@@ -150,7 +150,7 @@ if( preg_match('/^[a-z]+\d+$/', $taskid) ) {
 		<p>Opened on <?=date('Y-m-d H:i', chop($task[0])) ?>, last updated on <?=date('Y-m-d H:i', $statusar[1]) ?>.</p>
 <?php
 		if( $queuepos > 0 ) {
-			echo "<p>Queue position: $queuepos.</p>";
+			echo "<p>Queue position: $queuepos. Refresh this page in ".($queuepos*2+1)."-".($queuepos*3+1)." minutes to download your image.</p>";
 		} elseif( time() - $statusar[1] > $min_interval ) {
 			echo '<p><a href="queue.php?task='.$taskid.'&restart=1">Restart task</a></p>';
 		}

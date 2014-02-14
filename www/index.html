@@ -43,6 +43,7 @@ h1 {
 <input type="hidden" name="tiles" value="mapnik">
 <input type="submit" id="submit" value="Submit">
 </form>
+<p><a href="queue.php">Download queue</a></p>
 <p id="footer">Based on <a href="http://wiki.openstreetmap.org/wiki/Bigmap">Bigmap</a>. Source code is published on <a href="https://github.com/zverik/bigmap2">github</a>.</p>
 <script>
 var map;
@@ -55,11 +56,11 @@ function addmap() {
 		}),
 		'osm-de': L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
 			name: 'osm-de', minZoom: 0, maxZoom: 18, subdomains: 'abc',
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy <a href=\"http://openstreetmap.de/\">OSM DE</a>'
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://openstreetmap.de/\">OSM DE</a>'
 		}),
 		'osm-fr': L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
 			name: 'osm-fr', minZoom: 0, maxZoom: 20, subdomains: 'abc',
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy <a href=\"http://tile.openstreetmap.fr/\">OSM France</a>'
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://tile.openstreetmap.fr/\">OSM France</a>'
 		}),
 		'cyclemap': L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
 			name: 'cyclemap', minZoom: 0, maxZoom: 17, subdomains: 'abc',
