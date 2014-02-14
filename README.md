@@ -32,7 +32,7 @@ And add those two lines in `crontab -e` editor (your intervals may vary):
     2 */6 * * * /var/www/.../purge_images.pl
 
 Of all PHP scripts only `queue.php` needs configuring: you should change e-mail in there, and may want to alter limits.
-Note that `$max_tiles` value should be also altered in `panel.php`.
+Tile limit is specified in `$max_tiles` variable in `bigmap.php`.
 
 After changing `tiles.txt` you would want to update Leaflet layers in `index.html`. To do this, just check paths
 in `scripts/tiles2html.pl` and run it.

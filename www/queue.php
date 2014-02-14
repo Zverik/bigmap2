@@ -71,7 +71,7 @@ function nominatim($lat, $lon) {
 	$response = json_decode(file_get_contents($url), true);
 	if( isset($response) && isset($response['display_name']) )
 		return $response['display_name'];
-	return sprintf('Unknown place (%.2f, %.2f)', $lat, $lon);
+	return sprintf('Unknown place (%.1f°%s, %.1f°%s)', abs($lat), $lat < 0 ? 'S' : 'N', abs($lon), $lon < 0 ? 'W' : 'E');
 }
 
 function get_queue_pos($taskid) {
