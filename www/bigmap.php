@@ -1,12 +1,16 @@
 <?php // BigMap 2. Written by Ilya Zverev, licensed WTFPL.
 define('IN_BIGMAP', true);
 
+$max_tiles = 100;
+
 $zoom = min(20, req_num('zoom'));
 $zoom2 = pow(2, $zoom);
 $xmin = max(0, req_num('xmin'));
 $ymin = max(0, req_num('ymin'));
 $xmax = min($zoom2 - 1, req_num('xmax'));
 $ymax = min($zoom2 - 1, req_num('ymax'));
+if( $xmin > $xmax ) { $tmp = $xmin; $xmin = $xmax; $xmax = $tmp; }
+if( $ymin > $ymax ) { $tmp = $ymin; $ymin = $ymax; $ymax = $tmp; }
 $xsize = $xmax - $xmin + 1;
 $ysize = $ymax - $ymin + 1;
 $llmin = tile2latlon($xmin, $ymax);

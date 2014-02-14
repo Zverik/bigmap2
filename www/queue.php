@@ -2,7 +2,6 @@
 $workpath = '../queue';
 $imgpath = 'result';
 $min_interval = 3600*3;
-$max_tiles = 100;
 $max_queue = 10;
 $email = 'zverik@textual.ru'; // for nominatim
 

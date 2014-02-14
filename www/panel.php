@@ -1,5 +1,4 @@
 <?php // BigMap 2 Panel. Written by Frederik Ramm and Ilya Zverev, licensed WTFPL.
-    $max_tiles = 100; // should be the same as in queue.php
 
 // temporary perl code
     print '<div id="control" style="align:center;position:fixed;top:50px;margin-left:50px;margin-right:50px;padding:10px;background:#ffffff;opacity:0.8;border:solid 1px;border-color:green;">';
@@ -29,7 +28,7 @@
     echo tde(); // td("ur", "left", $xmin+1, $xmax+1, $ymin-1, $ymax-1, $zoom);
     echo "<td>&nbsp;</td>";
     echo tde(); // td("tl", "right", $xmin+1, $xmax, $ymin+1, $ymax, $zoom);
-    echo td("top", "center", $xmin, $xmax, $ymin+1, $ymax, $zoom);
+    echo $ymin == $ymax ? tde('top') : td("top", "center", $xmin, $xmax, $ymin+1, $ymax, $zoom);
     echo tde(); // td("tr", "left", $xmin, $xmax-1, $ymin+1, $ymax, $zoom);
     echo "</tr><tr>";
     echo $xmin <= 0 ? tde('left', 'right') : td("left", "right", $xmin-1, $xmax, $ymin, $ymax, $zoom);
@@ -40,9 +39,9 @@
     echo "<td align='center' bgcolor='#aaaaaa'><b>SHIFT</b></td>";
     echo $xmax >= $zoom2-1 ? tde('right', 'left') : td("right", "left", $xmin+1, $xmax+1, $ymin, $ymax, $zoom);
     echo "<td>&nbsp;</td>";
-    echo td("left", "right", $xmin+1, $xmax, $ymin, $ymax, $zoom);
+    echo $xmin == $xmax ? tde('left', 'right') : td("left", "right", $xmin+1, $xmax, $ymin, $ymax, $zoom);
     echo "<td align='center' bgcolor='#aaaaaa'><b>SHRINK</b></td>";
-    echo td("right", "left", $xmin, $xmax-1, $ymin, $ymax, $zoom);
+    echo $xmin == $xmax ? tde('right', 'left') : td("right", "left", $xmin, $xmax-1, $ymin, $ymax, $zoom);
     echo "</tr><tr>";
     echo tde(); // td("bl", "right", $xmin-1, $xmax, $ymin, $ymax+1, $zoom);
     echo $ymax >= $zoom2-1 ? tde('bottom') : td("bottom", "center", $xmin, $xmax, $ymin, $ymax+1, $zoom);
@@ -53,7 +52,7 @@
     echo tde(); // td("dr", "left", $xmin+1, $xmax+1, $ymin+1, $ymax+1, $zoom);
     echo "<td>&nbsp;</td>";
     echo tde(); // td("bl", "right", $xmin+1, $xmax, $ymin, $ymax-1, $zoom);
-    echo td("bottom", "center", $xmin, $xmax, $ymin, $ymax-1, $zoom);
+    echo $ymin == $ymax ? tde('bottom') : td("bottom", "center", $xmin, $xmax, $ymin, $ymax-1, $zoom);
     echo tde(); // td("br", "left", $xmin, $xmax-1, $ymin, $ymax-1, $zoom);
     echo "</tr><tr><td></td></tr>";
     echo "<tr><td colspan='11'><table bgcolor='#aaaaaa' width='100%' border='0' cellpadding='0' cellspacing='0'><tr>";
