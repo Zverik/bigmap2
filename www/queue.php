@@ -152,6 +152,8 @@ if( preg_match('/^[a-z]+\d+$/', $taskid) ) {
 			echo "<p>Queue position: $queuepos. Refresh this page in ".($queuepos*2+1)."-".($queuepos*3+1)." minutes to download your image.</p>";
 		} elseif( time() - $statusar[1] > $min_interval ) {
 			echo '<p><a href="queue.php?task='.$taskid.'&restart=1">Restart task</a></p>';
+		} else {
+			echo '<p>You can return here later to refresh the image.</p>';
 		}
 
 		// list all generated images
@@ -173,6 +175,7 @@ if( preg_match('/^[a-z]+\d+$/', $taskid) ) {
 				$meta = $link.'&basename='.preg_replace('/\.\w+$/', '', $image).'&action';
 				echo "<a href=\"$imgpath/$image\">$name</a> <a href=\"$meta=ozimap\">.map</a> <a href=\"$meta=wld\">.wld</a> <a href=\"$meta=kml\">.kml</a><br>\n";
 			}
+			echo '<p>Note that images will be purged in a couple of days.</p>';
 		}
 	} else {
 		echo '<h1>Task was not found</h1>';
