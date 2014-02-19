@@ -165,17 +165,18 @@ if( preg_match('/^[a-z]+\d+$/', $taskid) ) {
 					$images[] = $filename;
 			}
 			closedir($dh);
-			rsort($images);
+
 			if( count($images) ) {
 				echo '<h2>Generated images</h2>';
+				rsort($images);
+				foreach( $images as $image ) {
+					$name = substr($image, $taskidlen + 5, 2).'.'.substr($image, $taskidlen + 3, 2).'.'.substr($image, $taskidlen + 1, 2)
+						.' '.substr($image, $taskidlen + 8, 2).':'.substr($image, $taskidlen + 10, 2);
+					$meta = $link.'&basename='.preg_replace('/\.\w+$/', '', $image).'&action';
+					echo "<a href=\"$imgpath/$image\">$name</a> <a href=\"$meta=ozimap\">.map</a> <a href=\"$meta=wld\">.wld</a> <a href=\"$meta=kml\">.kml</a><br>\n";
+				}
+				echo '<p>Note that images will be purged in a couple of days.</p>';
 			}
-			foreach( $images as $image ) {
-				$name = substr($image, $taskidlen + 5, 2).'.'.substr($image, $taskidlen + 3, 2).'.'.substr($image, $taskidlen + 1, 2)
-					.' '.substr($image, $taskidlen + 8, 2).':'.substr($image, $taskidlen + 10, 2);
-				$meta = $link.'&basename='.preg_replace('/\.\w+$/', '', $image).'&action';
-				echo "<a href=\"$imgpath/$image\">$name</a> <a href=\"$meta=ozimap\">.map</a> <a href=\"$meta=wld\">.wld</a> <a href=\"$meta=kml\">.kml</a><br>\n";
-			}
-			echo '<p>Note that images will be purged in a couple of days.</p>';
 		}
 	} else {
 		echo '<h1>Task was not found</h1>';
@@ -229,10 +230,13 @@ if( preg_match('/^[a-z]+\d+$/', $taskid) ) {
 
 	$cnt = count($tasks_done);
 	if( $cnt ) {
+		$limit = 50;
 		echo "<h2>Finished tasks</h2>\n<p>\n";
-		for( $i = $cnt-1; $i >= max(0, $cnt-50); $i-- )
+		for( $i = $cnt - 1; $i >= max(0, $cnt - $limit); $i-- )
 			echo get_task_line($tasks_done[$i])."<br>\n";
 		echo "</p>\n";
+		if( $cnt > $limit )
+			echo "<p>".($cnt-$limit)." older tasks were not included.</p>\n";
 	}
 }
 
