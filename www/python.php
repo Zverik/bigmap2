@@ -14,11 +14,12 @@ foreach( $layers as $layer ) {
 
 
 import io, urllib2, datetime, time, re, random
-from PIL import Image
+from PIL import Image, ImageDraw
 # ^^^^^^ install "python-pillow" package | pip install Pillow | easy_install Pillow
 
 (zoom, xmin, ymin, xmax, ymax) = (<?=$zoom ?>, <?=$xmin ?>, <?=$ymin ?>, <?=$xmax ?>, <?=$ymax ?>)
 layers = [<?=$l ?>]
+attribution = '<?=str_replace("'", "\'", $attrib_plain) ?>'
 xsize = xmax - xmin + 1
 ysize = ymax - ymin + 1
 
@@ -33,7 +34,8 @@ for x in range(xmin, xmax+1):
 				url = url.replace(match.group(0), random.choice(match.group(1)))
 			print url, "... ";
 			try:
-				tile = urllib2.urlopen(url).read()
+				req = urllib2.Request(url, headers={'User-Agent': 'BigMap/2.0'})
+				tile = urllib2.urlopen(req).read()
 			except Exception, e:
 				print "Error", e
 				continue;
@@ -43,6 +45,10 @@ for x in range(xmin, xmax+1):
 			if counter == 10:
 				time.sleep(2);
 				counter = 0
+
+draw = ImageDraw.Draw(resultImage)
+draw.text((5, ysize*256-15), attribution, (0,0,0))
+del draw
 
 now = datetime.datetime.now()
 outputFileName = "map%02d-%02d%02d%02d-%02d%02d.png" % (zoom, now.year % 100, now.month, now.day, now.hour, now.minute)

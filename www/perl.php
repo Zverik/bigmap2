@@ -22,6 +22,7 @@ my @layers = (<?=$l ?>);
 my $attribution = '<?=str_replace("'", "\'", $attrib_plain) ?>';
 my $xsize = $xmax - $xmin + 1;
 my $ysize = $ymax - $ymin + 1;
+
 my $img = GD::Image->new($xsize*256, $ysize*256, 1);
 my $white = $img->colorAllocate(248,248,248);
 $img->filledRectangle(0,0,$xsize*256,$ysize*256,$white);
@@ -59,7 +60,8 @@ for (my $x=0;$x<$xsize;$x++)
     }
 }
 my $black = $img->colorClosest(0,0,0);
-$img->string(gdSmallFont, 10, $ysize*256 - 20, $attribution, $black);
+$img->string(gdSmallFont, 5, $ysize*256 - 15, $attribution, $black);
+
 my @t = localtime();
 open PIC, sprintf('>map%02d-%02d%02d%02d-%02d%02d.png', $zoom, $t[5]%100, $t[4]+1, $t[3], $t[2], $t[1]);
 binmode PIC;

@@ -187,7 +187,7 @@ sub create_image {
 		}
 	}
 	my $black = $img->colorClosest(0,0,0);
-	$img->string(gdSmallFont, 10, $ysize*256 - 20, $attribution, $black);
+	$img->string(gdSmallFont, 5, $ysize*256 - 15, $attribution, $black);
 	open PIC, '>'.$filename;
 	binmode PIC;
 	print PIC $img->png();
