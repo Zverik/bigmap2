@@ -106,10 +106,11 @@ for( $y = $ymin; $y <= $ymax; $y++ ) {
 			$bg = str_replace('!x', $x, str_replace('!y', $y, str_replace('!z', $zoom, $layers[$l])));
 			if( preg_match('/{([a-z0-9]+)}/', $bg, $m) )
 				$bg = str_replace($m[0], substr($m[1], rand(0, strlen($m[1]) - 1), 1), $bg);
-			print "<img src=\"$bg\" $style onclick=\"getElementById('control').style.display='block';\">";
+			echo "<img src=\"$bg\" $style onclick=\"getElementById('control').style.display='block';\">";
 		}
 	}
 }
+echo "<div style=\"position: absolute; left: 5px; top: ".($scale*($ymax-$ymin+1)-15)."px; font-size: 8px;\">$attribution</div>\n";
 
 require('panel.php');
 ?>
