@@ -23,12 +23,12 @@ while(<TILES>) {
 }
 close TILES;
 
-my $res = "\tvar base = {\n";
+my $res = "\tbase = {\n";
 $res .= print_code($_) foreach @base;
 $res =~ s/,\n$/\n/;
 $res .= "\t};\n";
 
-$res .= "\tvar overlay = {\n";
+$res .= "\toverlay = {\n";
 $res .= print_code($_) foreach @overlay;
 $res =~ s/,\n$/\n/;
 $res .= "\t};\n";

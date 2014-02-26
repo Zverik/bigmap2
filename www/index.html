@@ -46,10 +46,10 @@ h1 {
 <p><a href="queue.php">Download queue</a></p>
 <p id="footer">Based on <a href="http://wiki.openstreetmap.org/wiki/Bigmap">Bigmap</a>. Source code is published on <a href="https://github.com/zverik/bigmap2">github</a>.</p>
 <script>
-var map;
+var map, base, overlay;
 function addmap() {
 	// GENERATED
-	var base = {
+	base = {
 		'mapnik': L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			name: 'mapnik', minZoom: 0, maxZoom: 19,
 			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a>'
@@ -111,7 +111,7 @@ function addmap() {
 			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://stamen.com\">Stamen Design</a>'
 		})
 	};
-	var overlay = {
+	overlay = {
 		'openseamap': L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
 			name: 'openseamap', minZoom: 0, maxZoom: 18,
 			attribution: ''
