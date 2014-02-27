@@ -11,7 +11,6 @@ use strict;
 use LWP;
 use GD;
 
-# use absolute paths!
 my $work_path = 'queue';
 my $result_path = 'www/result';
 my $address = 'http://bigmap.osmz.ru';
@@ -21,6 +20,7 @@ exit if -e $work_path.'/working';
 open TTT, ">$work_path/working";
 close TTT;
 open(my $log, ">>$work_path/log");
+binmode($log, ":unix"); # autoflush
 #print $log "\n";
 
 # "finally" equivalent
@@ -63,7 +63,7 @@ eval {
 		my $ua = LWP::UserAgent->new();
 		$ua->env_proxy;
 		$ua->agent('BigMap/2.0 ('.$address.')');
-		$ua->timeout(120);
+		$ua->timeout(15);
 		if( download_tiles($ua, $contents[2], $contents[3]) ) {
 			if( create_image($taskid, $contents[2], $contents[4]) ) {
 				$status = 2;
@@ -73,7 +73,7 @@ eval {
 			clear_tiles();
 		} else {
 			$status = $status < 0 ? $status-1 : -1;
-			$status = 3 if $status <= -5;
+			$status = 3 if $status <= -3;
 		}
 		write_task($taskid, \@contents, $status);
 		wlog("Task done with status $status");
@@ -139,6 +139,7 @@ sub download_tiles {
 				my $resp = $ua->get($url);
 				#wlog($url.' - '.$resp->status_line);
 				if( !$resp->is_success ) {
+					wlog($url.' - '.$resp->status_line);
 					$img = 0;
 					$good = 0;
 					$stat_ar->[1]++;
@@ -186,7 +187,7 @@ sub create_image {
 			$img->copy($tile,($x-$xmin)*256,($y-$ymin)*256,0,0,256,256);
 		}
 	}
-	my $black = $img->colorClosest(0,0,0);
+	my $black = $img->colorAllocate(0,0,0);
 	$img->string(gdSmallFont, 5, $ysize*256 - 15, $attribution, $black);
 	open PIC, '>'.$filename;
 	binmode PIC;
