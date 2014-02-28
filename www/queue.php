@@ -111,6 +111,7 @@ function get_queue_pos($taskid) {
 <head>
 <title>BigMap 2</title>
 <meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
 </head>
 <body>
 <?php
@@ -151,7 +152,7 @@ if( preg_match('/^[a-z]+\d+$/', $taskid) ) {
 		if( $queuepos > 0 ) {
 			echo "<p>Queue position: $queuepos. Refresh this page in ".($queuepos*2+1)."-".($queuepos*3+1)." minutes to download your image.</p>";
 		} elseif( time() - $statusar[1] > $min_interval ) {
-			echo '<p><a href="queue.php?task='.$taskid.'&restart=1">Restart task</a></p>';
+			echo '<p><a href="queue.php?task='.$taskid.'&restart=1" rel="nofollow">Restart task</a></p>';
 		} else {
 			echo '<p>You can return here later to refresh the image.</p>';
 		}

@@ -97,7 +97,7 @@
 function td($what, $align, $xmi, $xma, $ymi, $yma, $zm, $scl = 0) {
     global $scale, $tiles;
     if( !$scl ) $scl = $scale;
-    return sprintf('<td bgcolor="#aaaaaa" align="%s"><a href="?xmin=%d&xmax=%d&ymin=%d&ymax=%d&zoom=%d&scale=%d&tiles=%s">%s</a></td>',
+    return sprintf('<td bgcolor="#aaaaaa" align="%s"><a href="?xmin=%d&xmax=%d&ymin=%d&ymax=%d&zoom=%d&scale=%d&tiles=%s" rel="nofollow">%s</a></td>',
         $align,
         $xmi, $xma,
         $ymi, $yma, 

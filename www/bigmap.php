@@ -94,6 +94,7 @@ function tile2latlon($x, $y) {
 <head>
 <title>BigMap 2</title>
 <meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
 </head>
 <body>
 <?php
