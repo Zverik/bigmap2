@@ -65,7 +65,7 @@ function get_taskid() {
 }
 
 function nominatim($lat, $lon) {
-	global $zoom;
+	global $zoom, $email;
 	$url = 'http://nominatim.openstreetmap.org/reverse?format=json&zoom='.min($zoom, 8).'&addressdetails=0'
 			.'&email='.urlencode($email).'&lat='.$lat.'&lon='.$lon;
 	$response = json_decode(file_get_contents($url), true);
