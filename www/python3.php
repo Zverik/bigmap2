@@ -1,4 +1,4 @@
-<?php // BigMap 2 Python export. Written by Ilya Zverev, licensed WTFPL.
+<?php // BigMap 2 Python3 export. Written by Ilya Zverev and Michael Behrens, licensed WTFPL.
 header('Content-type: application/x-python');
 header('Content-disposition: attachment; filename="bigmap.py"');
 
