@@ -6,15 +6,7 @@
     $heitiles = $ymax-$ymin+1;
     $widpix = $widtiles*256;
     $heipix = $heitiles*256;
-    $asp="1:1";
-    if ($widpix>$heipix)
-    {
-        $asp = sprintf("%.2f:1", $widpix/$heipix);
-    }
-    elseif($widpix<$heipix)
-    {
-        $asp = sprintf("1:%.2f", $heipix/$widpix);
-    }
+    $asp=asp($widtiles,$heitiles);
 
     printf("Map is %dx%d tiles (%dx%d px) at zoom %d, aspect %s<br>",
         $widtiles,$heitiles,$widpix,$heipix,$zoom,$asp);
@@ -92,6 +84,16 @@
     echo "<td align='right'><a href=\"#\" onclick=\"getElementById('control').style.display='none';\">hide this</a></td>";
     echo "</tr></table></td></tr></table>";
     echo "</div></div>";
+
+# functions to create aspect ratio
+function gcd($a,$b) {
+    return ($a % $b) ? gcd($b,$a % $b) : $b;
+}
+
+function asp($w, $h) {
+	$gcd = gcd($w,$h);
+	return $w / $gcd . ":" . $h / $gcd;
+}
 
 # helper to display a table cell with a parametrized link inside
 function td($what, $align, $xmi, $xma, $ymi, $yma, $zm, $scl = 0) {
