@@ -43,9 +43,6 @@ if( $action == 'ozimap' ) {
 } else if( $action == 'python' ) {
 	require('python.php');
 	exit;
-} else if( $action == 'python3' ) {
-	require('python3.php');
-	exit;
 } else if( $action == 'enqueue' ) {
 	require('queue.php');
 	exit;
