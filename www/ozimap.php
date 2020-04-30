@@ -1,6 +1,6 @@
 <?php // BigMap 2 OziExplorer MAP export. Written by Ilya Zverev, licensed WTFPL.
 header('Content-type: application/x-map');
-header('Content-disposition: attachment; filename="'.$basename.'.map"');
+header('Content-disposition: attachment; filename=bigmap_"' . $name . '.map"');
 
 $width = ($xmax - $xmin + 1) * 256;
 $height = ($ymax - $ymin + 1) * 256;
