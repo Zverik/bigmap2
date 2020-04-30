@@ -86,7 +86,7 @@
     echo "</div></div>";
 
 function generateMapTitle($xmin,$xmax,$ymin,$ymax,$zoom,$scale,$tiles,$name) {
-	return sprintf("<b onclick='var newname=prompt(\"Enter your new name here\",\"%s\"); if(!newname===null){location.href = \"?xmin=%d&xmax=%d&ymin=%d&ymax=%d&zoom=%d&scale=%d&tiles=%s&name=\" + encodeURIComponent(newname)}'>%s</b>",
+	return sprintf("<b onclick='var newname=prompt(\"Enter your new name here\",\"%s\"); if(newname){location.href = \"?xmin=%d&xmax=%d&ymin=%d&ymax=%d&zoom=%d&scale=%d&tiles=%s&name=\" + encodeURIComponent(newname);}'>%s</b>",
 	$name,
 		$xmin,$xmax,$ymin,$ymax,$zoom,$scale,$tiles,
 		$name,$name);
