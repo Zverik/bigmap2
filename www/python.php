@@ -53,5 +53,5 @@ draw.text((5, ysize*tilesize-15), attribution, (0,0,0))
 del draw
 
 now = datetime.datetime.now()
-outputFileName = "map<?=$name ?>%02d-%02d%02d%02d-%02d%02d.png" % (zoom, now.year % 100, now.month, now.day, now.hour, now.minute)
+outputFileName = "bigmap_<?=$name ?>%02d-%02d%02d%02d-%02d%02d.png" % (zoom, now.year % 100, now.month, now.day, now.hour, now.minute)
 resultImage.save(outputFileName)

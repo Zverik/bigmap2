@@ -16,7 +16,7 @@ function deg( $value, $is_lon ) {
 ?>
 OziExplorer Map Data File Version 2.2
 BigMap
-map<?=$name ?>.png
+bigmap_<?=$name ?>.png
 1 ,Map Code,
 WGS 84,WGS 84,   0.0000,   0.0000,WGS 84
 Reserved 1
