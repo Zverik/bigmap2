@@ -21,6 +21,7 @@ $lat_max = $llmax[2];
 $lon_max = $llmax[3];
 $scale = req_num('scale', 256);
 $tiles = isset($_REQUEST['tiles']) && preg_match('/^[a-z0-9|-]+$/', $_REQUEST['tiles']) ? $_REQUEST['tiles'] : 'mapnik';
+$name = isset($_REQUEST['name']) ? $_REQUEST['name'] : 'New Map';
 $layers = get_layers($tiles, $zoom);
 $redirect = 'http://'.$_SERVER['HTTP_HOST'].rtrim(dirname($_SERVER['PHP_SELF']), '/\\').'/';
 $permalink = $redirect."bigmap.php?xmin=$xmin&xmax=$xmax&ymin=$ymin&ymax=$ymax&zoom=$zoom&scale=$scale&tiles=$tiles";
