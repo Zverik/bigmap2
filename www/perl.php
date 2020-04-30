@@ -1,6 +1,6 @@
 <?php // BigMap 2 Perl export. Written by Frederik Ramm and Ilya Zverev, licensed WTFPL.
 header('Content-type: application/x-perl');
-header('Content-disposition: attachment; filename="bigmap_' . $name . '.pl"');
+header('Content-disposition: attachment; filename="' . $name . '.pl"');
 
 $l = '';
 foreach( $layers as $layer ) {
@@ -64,7 +64,7 @@ my $black = $img->colorClosest(0,0,0);
 $img->string(gdSmallFont, 5, $ysize*256 - 15, $attribution, $black);
 
 my @t = localtime();
-open PIC, sprintf('>BigmapExport<?=$name ?>%02d-%02d%02d%02d-%02d%02d.png', $zoom, $t[5]%100, $t[4]+1, $t[3], $t[2], $t[1]);
+open PIC, sprintf('>map<?=$name ?>%02d-%02d%02d%02d-%02d%02d.png', $zoom, $t[5]%100, $t[4]+1, $t[3], $t[2], $t[1]);
 binmode PIC;
 print PIC $img->png();
 close PIC;

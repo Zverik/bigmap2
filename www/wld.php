@@ -1,6 +1,6 @@
 <?php // BigMap 2 WLD export. Written by Ilya Zverev, licensed WTFPL.
 header('Content-type: application/x-wld');
-header('Content-disposition: attachment; filename=bigmap_"' . $name . '.wld"');
+header('Content-disposition: attachment; filename="' . $name . '.wld"');
 
 $width = ($xmax - $xmin + 1) * 256;
 $height = ($ymax - $ymin + 1) * 256;

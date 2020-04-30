@@ -69,11 +69,13 @@
     echo "<td>&nbsp;</td>";
     echo str_replace('?', '?action=wld&', td("WLD", "left", $xmin,$xmax,$ymin,$ymax,$zoom,$name));
     echo "<td>&nbsp;</td>";
+	echo str_replace('?', '?action=kml&', td("KML", "left", $xmin,$xmax,$ymin,$ymax,$zoom,$name));
+    echo "<td>&nbsp;</td>";
     echo str_replace('?', '?action=perl&', td("Perl", "left", $xmin,$xmax,$ymin,$ymax,$zoom,$name));
     echo "<td>&nbsp;</td>";
     echo str_replace('?', '?action=python&', td("Py", "left", $xmin,$xmax,$ymin,$ymax,$zoom,$name));
     echo "<td>&nbsp;</td>";
-    echo ($xmax-$xmin+1) * ($ymax-$ymin+1) > $max_tiles ? tde("Enqueue", "left") :  str_replace('?', '?action=enqueue&', td("Enqueue", "left", $xmin,$xmax,$ymin,$ymax,$zoom));
+    echo ($xmax-$xmin+1) * ($ymax-$ymin+1) > $max_tiles ? tde("Enqueue", "left") :  str_replace('?', '?action=enqueue&', td("Enqueue", "left", $xmin,$xmax,$ymin,$ymax,$zoom,$name));
     echo "<td>&nbsp;</td>";
     echo td("100", "left", $xmin,$xmax,$ymin,$ymax,$zoom,$name,256);
     echo "<td>/</td>";

@@ -1,6 +1,6 @@
 <?php // BigMap 2 Python3 export. Written by Ilya Zverev and Michael Behrens, licensed WTFPL.
 header('Content-type: application/x-python');
-header('Content-disposition: attachment; filename="bigmap_' . $name . '.py"');
+header('Content-disposition: attachment; filename="' . $name . '.py"');
 
 $l = '';
 foreach( $layers as $layer ) {
@@ -53,5 +53,5 @@ draw.text((5, ysize*tilesize-15), attribution, (0,0,0))
 del draw
 
 now = datetime.datetime.now()
-outputFileName = "BigmapExport<?=$name ?>%02d-%02d%02d%02d-%02d%02d.png" % (zoom, now.year % 100, now.month, now.day, now.hour, now.minute)
+outputFileName = "map<?=$name ?>%02d-%02d%02d%02d-%02d%02d.png" % (zoom, now.year % 100, now.month, now.day, now.hour, now.minute)
 resultImage.save(outputFileName)

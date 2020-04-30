@@ -1,6 +1,6 @@
 <?php // BigMap 2 OziExplorer MAP export. Written by Ilya Zverev, licensed WTFPL.
 header('Content-type: application/x-map');
-header('Content-disposition: attachment; filename=bigmap_"' . $name . '.map"');
+header('Content-disposition: attachment; filename="' . $name . '.map"');
 
 $width = ($xmax - $xmin + 1) * 256;
 $height = ($ymax - $ymin + 1) * 256;
@@ -16,7 +16,7 @@ function deg( $value, $is_lon ) {
 ?>
 OziExplorer Map Data File Version 2.2
 BigMap
-<?=$basename ?>.png
+map<?=$name ?>.png
 1 ,Map Code,
 WGS 84,WGS 84,   0.0000,   0.0000,WGS 84
 Reserved 1
