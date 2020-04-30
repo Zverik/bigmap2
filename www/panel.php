@@ -69,8 +69,6 @@
     echo "<td>&nbsp;</td>";
     echo str_replace('?', '?action=wld&', td("WLD", "left", $xmin,$xmax,$ymin,$ymax,$zoom,$name));
     echo "<td>&nbsp;</td>";
-	echo str_replace('?', '?action=kml&', td("KML", "left", $xmin,$xmax,$ymin,$ymax,$zoom,$name));
-    echo "<td>&nbsp;</td>";
     echo str_replace('?', '?action=perl&', td("Perl", "left", $xmin,$xmax,$ymin,$ymax,$zoom,$name));
     echo "<td>&nbsp;</td>";
     echo str_replace('?', '?action=python&', td("Py", "left", $xmin,$xmax,$ymin,$ymax,$zoom,$name));
