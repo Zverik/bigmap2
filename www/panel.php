@@ -8,8 +8,8 @@
     $heipix = $heitiles*256;
     $asp=asp($widtiles,$heitiles);
 
-    printf("Map \"%s\" is %dx%d tiles (%dx%d px) at zoom %d, aspect %s<br>",
-        $name,$widtiles,$heitiles,$widpix,$heipix,$zoom,$asp);
+	echo "Map " . generateMapTitle($xmin,$xmax,$ymin,$ymax,$zoom,$scale,$tiles,$name);
+	printf(" is %dx%d tiles (%dx%d px) at zoom %d, aspect %s<br>", $widtiles,$heitiles,$widpix,$heipix,$zoom,$asp);
     echo '<table cellspacing="0" cellpadding="2"><tr>';
     echo tde(); // td("tl", "right", $xmin-1, $xmax, $ymin-1, $ymax, $zoom);
     echo $ymin <= 0 ? tde('top') : td("top", "center", $xmin, $xmax, $ymin-1, $ymax, $zoom, $name);
@@ -84,6 +84,13 @@
     echo "<td align='right'><a href=\"#\" onclick=\"getElementById('control').style.display='none';\">hide this</a></td>";
     echo "</tr></table></td></tr></table>";
     echo "</div></div>";
+
+function generateMapTitle($xmin,$xmax,$ymin,$ymax,$zoom,$scale,$tiles,$name) {
+	return sprintf("<b onclick='var newname=prompt(\"Enter your new name here\",\"%s\"); if(!newname===null){location.href = \"?xmin=%d&xmax=%d&ymin=%d&ymax=%d&zoom=%d&scale=%d&tiles=%s&name=\" + encodeURIComponent(newname)}'>%s</b>",
+	$name,
+		$xmin,$xmax,$ymin,$ymax,$zoom,$scale,$tiles,
+		$name,$name);
+}	
 
 # functions to create aspect ratio
 function gcd($a,$b) {
