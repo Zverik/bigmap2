@@ -10,9 +10,12 @@
 use strict;
 use LWP;
 use GD;
+use Cwd 'abs_path';
+use File::Basename;
 
-my $work_path = 'queue';
-my $result_path = 'www/result';
+my $root_path = abs_path(dirname(__FILE__)).'/..';
+my $work_path = $root_path.'/queue';
+my $result_path = $root_path.'/www/result';
 my $address = 'http://bigmap.osmz.ru';
 
 # create mutex

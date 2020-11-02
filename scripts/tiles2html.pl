@@ -5,7 +5,7 @@
 
 use strict;
 
-my $wwwroot = 'www';
+my $wwwroot = '../www';
 
 open INDEX, '<'.$wwwroot.'/index.html' or die "No index.html found: $!";
 my @index;

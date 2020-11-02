@@ -4,9 +4,11 @@
 # Written by Ilya Zverev, licensed WTFPL.
 
 use strict;
+use Cwd 'abs_path';
+use File::Basename;
 
 my $limit = 100 * 1024 * 1024; # in bytes
-my $path = 'www/result'; # use absolute path if called from cron
+my $path = abs_path(dirname(__FILE__)).'../www/result';
 
 opendir(my $dh, $path) or die "Cannot open path: $!";
 my @images = sort { $b->[1] <=> $a->[1] } map { ["$path/$_", (stat "$path/$_")[9], (stat "$path/$_")[7]] } grep {/\.png$/} readdir $dh;
