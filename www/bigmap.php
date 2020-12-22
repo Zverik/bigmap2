@@ -24,7 +24,7 @@ $tiles = isset($_REQUEST['tiles']) && preg_match('/^[a-z0-9|-]+$/', $_REQUEST['t
 $layers = get_layers($tiles, $zoom);
 $redirect = 'http://'.$_SERVER['HTTP_HOST'].rtrim(dirname($_SERVER['PHP_SELF']), '/\\').'/';
 $permalink = $redirect."bigmap.php?xmin=$xmin&xmax=$xmax&ymin=$ymin&ymax=$ymax&zoom=$zoom&scale=$scale&tiles=$tiles";
-$basename = isset($_REQUEST['basename']) ? $_REQUEST['basename'] : 'bigmap';
+$name = isset($_REQUEST['name']) ? $_REQUEST['name'] : 'Bigmap';
 
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 if( $action == 'ozimap' ) {
