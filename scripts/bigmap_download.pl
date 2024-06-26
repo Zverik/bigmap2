@@ -162,7 +162,7 @@ sub download_tiles {
 				mkdir "$work_path/tiles" if !-d "$work_path/tiles";
 				open PIC, sprintf(">$work_path/tiles/%d_%06d_%06d.png", $zoom, $x, $y) or return 0;
 				binmode PIC;
-				print PIC $img->gd2();
+				print PIC $img->png();
 				close PIC;
 			}
 		}
