@@ -16,7 +16,7 @@ use File::Basename;
 my $root_path = abs_path(dirname(__FILE__)).'/..';
 my $work_path = $root_path.'/queue';
 my $result_path = $root_path.'/www/result';
-my $address = 'http://bigmap.osmz.ru';
+my $address = 'https://bigmap.osmz.ru';
 
 # create mutex
 exit if -e $work_path.'/working';

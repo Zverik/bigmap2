@@ -5,7 +5,7 @@ $min_interval = 3600*3;
 $max_queue = 10;
 $email = 'zverik@textual.ru'; // for nominatim
 
-$redirect = 'http://'.$_SERVER['HTTP_HOST'].rtrim(dirname($_SERVER['PHP_SELF']), '/\\').'/';
+$redirect = 'https://'.$_SERVER['HTTP_HOST'].rtrim(dirname($_SERVER['PHP_SELF']), '/\\').'/';
 date_default_timezone_set('UTC');
 
 if( defined('IN_BIGMAP') ) {
@@ -66,7 +66,7 @@ function get_taskid() {
 
 function nominatim($lat, $lon) {
 	global $zoom, $email;
-	$url = 'http://nominatim.openstreetmap.org/reverse?format=json&zoom='.min($zoom, 8).'&addressdetails=0'
+	$url = 'https://nominatim.openstreetmap.org/reverse?format=json&zoom='.min($zoom, 8).'&addressdetails=0'
 			.'&email='.urlencode($email).'&lat='.$lat.'&lon='.$lon;
 	$response = json_decode(file_get_contents($url), true);
 	if( isset($response) && isset($response['display_name']) )

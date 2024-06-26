@@ -4,8 +4,9 @@
 # Written by Ilya Zverev, licensed WTFPL.
 
 use strict;
+use Cwd 'abs_path';
 
-my $wwwroot = '../www';
+my $wwwroot = abs_path(dirname(__FILE__)).'/../www';
 
 open INDEX, '<'.$wwwroot.'/index.html' or die "No index.html found: $!";
 my @index;
@@ -55,7 +56,7 @@ sub print_code {
 	}
 	$url =~ s/!([xyz])/{\1}/g;
 	my $attr = $line->[5];
-	$attr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>'.($attr ? ' | ' : '').$attr if !$line->[1];
+	$attr = 'Map data &copy; <a href="https://www.openstreetmap.org">OpenStreetMap</a>'.($attr ? ' | ' : '').$attr if !$line->[1];
 	$attr =~ s/"/\\"/g;
 
 	my $res = '';

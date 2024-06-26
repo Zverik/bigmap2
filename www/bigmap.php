@@ -22,7 +22,7 @@ $lon_max = $llmax[3];
 $scale = req_num('scale', 256);
 $tiles = isset($_REQUEST['tiles']) && preg_match('/^[a-z0-9|-]+$/', $_REQUEST['tiles']) ? $_REQUEST['tiles'] : 'mapnik';
 $layers = get_layers($tiles, $zoom);
-$redirect = 'http://'.$_SERVER['HTTP_HOST'].rtrim(dirname($_SERVER['PHP_SELF']), '/\\').'/';
+$redirect = 'https://'.$_SERVER['HTTP_HOST'].rtrim(dirname($_SERVER['PHP_SELF']), '/\\').'/';
 $permalink = $redirect."bigmap.php?xmin=$xmin&xmax=$xmax&ymin=$ymin&ymax=$ymax&zoom=$zoom&scale=$scale&tiles=$tiles";
 $basename = isset($_REQUEST['basename']) ? $_REQUEST['basename'] : 'bigmap';
 
@@ -55,7 +55,7 @@ function get_layers($tiles, $zoom) {
 	global $attribution, $attrib_plain;
 	$needed = explode('|', $tiles);
 	$result = array();
-	$attribution = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>';
+	$attribution = 'Map data &copy; <a href="https://www.openstreetmap.org">OpenStreetMap</a>';
 	$file = @fopen('tiles.txt', 'r');
 	if( $file ) {
 		while( ($line = fgets($file)) !== false ) {
@@ -71,14 +71,14 @@ function get_layers($tiles, $zoom) {
 		fclose($file);
 	}
 	if( !count($result) )
-		$result[] = 'http://tile.openstreetmap.org/!z/!x/!y.png';
+		$result[] = 'https://tile.openstreetmap.org/!z/!x/!y.png';
 	$attrib_plain = str_replace('&copy;', '(c)', preg_replace('/<[^>]+>/', '', $attribution));
 	return $result;
 }
 
 function tile2latlon($x, $y) {
 	global $zoom2;
-	// taken from http://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#Perl
+	// taken from https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#Perl
 	$relY1 = M_PI * (1 - 2 * $y / $zoom2);
 	$relY2 = M_PI * (1 - 2 * ($y + 1) / $zoom2);
 	$lat1 = rad2deg(atan(sinh($relY1)));
