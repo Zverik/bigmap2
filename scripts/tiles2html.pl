@@ -5,6 +5,7 @@
 
 use strict;
 use Cwd 'abs_path';
+use File::Basename;
 
 my $wwwroot = abs_path(dirname(__FILE__)).'/../www';
 

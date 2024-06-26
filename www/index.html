@@ -51,127 +51,67 @@ var map, base, overlay;
 function addmap() {
 	// GENERATED
 	base = {
-		'mapnik': L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		'mapnik': L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			name: 'mapnik', minZoom: 0, maxZoom: 19,
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a>'
+			attribution: 'Map data &copy; <a href=\"https://www.openstreetmap.org\">OpenStreetMap</a>'
 		}),
-		'osm-de': L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+		'osm-de': L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
 			name: 'osm-de', minZoom: 0, maxZoom: 18, subdomains: 'abc',
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://openstreetmap.de/\">OSM DE</a>'
+			attribution: 'Map data &copy; <a href=\"https://www.openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"https://openstreetmap.de/\">OSM DE</a>'
 		}),
-		'osm-fr': L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+		'osm-fr': L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
 			name: 'osm-fr', minZoom: 0, maxZoom: 20, subdomains: 'abc',
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://tile.openstreetmap.fr/\">OSM France</a>'
+			attribution: 'Map data &copy; <a href=\"https://www.openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"https://tile.openstreetmap.fr/\">OSM France</a>'
 		}),
-		'cyclemap': L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
-			name: 'cyclemap', minZoom: 0, maxZoom: 17, subdomains: 'abc',
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
-		}),
-		'opnv': L.tileLayer('http://tile.öpnvkarte.de/tilegen/{z}/{x}/{y}.png', {
-			name: 'opnv', minZoom: 0, maxZoom: 18,
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a>'
-		}),
-		'mapsurfer': L.tileLayer('http://korona.geog.uni-heidelberg.de/tiles/roads/x={x}&y={y}&z={z}', {
-			name: 'mapsurfer', minZoom: 0, maxZoom: 19,
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://giscience.uni-hd.de/\">GIScience Heidelberg</a>'
-		}),
-		'hikebike': L.tileLayer('http://toolserver.org/tiles/hikebike/{z}/{x}/{y}.png', {
-			name: 'hikebike', minZoom: 0, maxZoom: 18,
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://hikebikemap.de/\">Colin Marquardt</a>'
-		}),
-		'humanitarian': L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+		'humanitarian': L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
 			name: 'humanitarian', minZoom: 0, maxZoom: 19, subdomains: 'abc',
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://hot.openstreetmap.org\">Humanitarian OSM Team</a>'
+			attribution: 'Map data &copy; <a href=\"https://www.openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"https://hot.openstreetmap.org\">Humanitarian OSM Team</a>'
 		}),
-		'transport': L.tileLayer('http://{s}.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png', {
-			name: 'transport', minZoom: 0, maxZoom: 18, subdomains: 'abc',
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
-		}),
-		'landscape': L.tileLayer('http://{s}.tile3.opencyclemap.org/landscape/{z}/{x}/{y}.png', {
-			name: 'landscape', minZoom: 0, maxZoom: 18, subdomains: 'abc',
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
-		}),
-		'outdoors': L.tileLayer('http://{s}.tile.opencyclemap.org/outdoors/{z}/{x}/{y}.png', {
-			name: 'outdoors', minZoom: 0, maxZoom: 18, subdomains: 'abc',
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
-		}),
-		'toner': L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
-			name: 'toner', minZoom: 0, maxZoom: 20, subdomains: 'abc',
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://stamen.com\">Stamen Design</a>'
-		}),
-		'toner-lite': L.tileLayer('http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', {
-			name: 'toner-lite', minZoom: 0, maxZoom: 20, subdomains: 'abc',
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://stamen.com\">Stamen Design</a>'
-		}),
-		'watercolor': L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png', {
-			name: 'watercolor', minZoom: 3, maxZoom: 16, subdomains: 'abc',
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://stamen.com\">Stamen Design</a>'
-		}),
-		'veloroad': L.tileLayer('http://tile.osmz.ru/veloroad/{z}/{x}/{y}.png', {
+		'veloroad': L.tileLayer('https://tile.osmz.ru/veloroad/{z}/{x}/{y}.png', {
 			name: 'veloroad', minZoom: 6, maxZoom: 15,
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; Ilya Zverev'
-		}),
-		'sputnik': L.tileLayer('http://{s}.tiles.maps.sputnik.ru/{z}/{x}/{y}.png', {
-			name: 'sputnik', minZoom: 0, maxZoom: 18, subdomains: 'abcd',
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://maps.sputnik.ru\">Sputnik</a>'
-		}),
-		'kosmosnimki': L.tileLayer('http://{s}.tile.osm.kosmosnimki.ru/kosmo/{z}/{x}/{y}.png', {
-			name: 'kosmosnimki', minZoom: 0, maxZoom: 17, subdomains: 'abcd',
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://osm.kosmosnimki.ru\">ScanEx</a>'
+			attribution: 'Map data &copy; <a href=\"https://www.openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; Ilya Zverev'
 		}),
 		'topomap': L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
 			name: 'topomap', minZoom: 0, maxZoom: 17, subdomains: 'abc',
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://opentopomap.org/\">OpenTopoMap</a>'
+			attribution: 'Map data &copy; <a href=\"https://www.openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"https://opentopomap.org/\">OpenTopoMap</a>'
 		})
 	};
 	overlay = {
-		'openseamap': L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
-			name: 'openseamap', minZoom: 0, maxZoom: 18,
-			attribution: ''
+		'seamarks': L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+			name: 'seamarks', minZoom: 0, maxZoom: 18,
+			attribution: 'Sea Marks &copy; <a href=\"https://openseamap.org/\">OpenSeaMap</a>'
 		}),
-		'hills': L.tileLayer('http://toolserver.org/~cmarqu/hill/{z}/{x}/{y}.png', {
-			name: 'hills', minZoom: 0, maxZoom: 15,
-			attribution: ''
-		}),
-		'hillshade': L.tileLayer('http://korona.geog.uni-heidelberg.de/tiles/asterh/x={x}&y={y}&z={z}', {
-			name: 'hillshade', minZoom: 13, maxZoom: 17,
-			attribution: 'DEM &copy; ASTER by METI and NASA'
-		}),
-		'contours': L.tileLayer('http://korona.geog.uni-heidelberg.de/tiles/asterc/x={x}&y={y}&z={z}', {
-			name: 'contours', minZoom: 13, maxZoom: 17,
-			attribution: 'DEM &copy; ASTER by METI and NASA'
-		}),
-		'pt': L.tileLayer('http://pt.openmap.lt/{z}/{x}/{y}.png', {
-			name: 'pt', minZoom: 0, maxZoom: 18,
-			attribution: 'Routes &copy; <a href=\"http://openmap.lt\">openmap.lt</a>'
+		'harbours': L.tileLayer('https://t2.openseamap.org/tile/{z}/{x}/{y}.png', {
+			name: 'harbours', minZoom: 0, maxZoom: 18,
+			attribution: 'Harbours &copy; <a href=\"https://openseamap.org/\">OpenSeaMap</a>'
 		}),
 		'fires': L.tileLayer('http://www.openfiremap.org/hytiles/{z}/{x}/{y}.png', {
 			name: 'fires', minZoom: 0, maxZoom: 17,
-			attribution: 'Fire Hydrants &copy; <a href=\"http://www.openfiremap.org/\">OpenFireMap</a>'
+			attribution: 'Fire Hydrants &copy; <a href=\"https://www.openfiremap.org/\">OpenFireMap</a>'
 		}),
-		'wmhiking': L.tileLayer('http://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
+		'wmhiking': L.tileLayer('https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
 			name: 'wmhiking', minZoom: 0, maxZoom: 18,
-			attribution: 'Trails &copy; <a href=\"http://waymarkedtrails.org/\">Waymarked Trails</a>'
+			attribution: 'Trails &copy; <a href=\"https://waymarkedtrails.org/\">Waymarked Trails</a>'
 		}),
-		'wmcycling': L.tileLayer('http://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {
+		'wmcycling': L.tileLayer('https://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {
 			name: 'wmcycling', minZoom: 0, maxZoom: 18,
-			attribution: 'Trails &copy; <a href=\"http://waymarkedtrails.org/\">Waymarked Trails</a>'
+			attribution: 'Trails &copy; <a href=\"https://waymarkedtrails.org/\">Waymarked Trails</a>'
 		}),
-		'wmmtb': L.tileLayer('http://tile.waymarkedtrails.org/mtb/{z}/{x}/{y}.png', {
+		'wmmtb': L.tileLayer('https://tile.waymarkedtrails.org/mtb/{z}/{x}/{y}.png', {
 			name: 'wmmtb', minZoom: 0, maxZoom: 18,
-			attribution: 'Trails &copy; <a href=\"http://waymarkedtrails.org/\">Waymarked Trails</a>'
+			attribution: 'Trails &copy; <a href=\"https://waymarkedtrails.org/\">Waymarked Trails</a>'
 		}),
-		'wmriding': L.tileLayer('http://tile.waymarkedtrails.org/riding/{z}/{x}/{y}.png', {
+		'wmriding': L.tileLayer('https://tile.waymarkedtrails.org/riding/{z}/{x}/{y}.png', {
 			name: 'wmriding', minZoom: 0, maxZoom: 18,
-			attribution: 'Trails &copy; <a href=\"http://waymarkedtrails.org/\">Waymarked Trails</a>'
+			attribution: 'Trails &copy; <a href=\"https://waymarkedtrails.org/\">Waymarked Trails</a>'
 		}),
-		'wmskating': L.tileLayer('http://tile.waymarkedtrails.org/skating/{z}/{x}/{y}.png', {
+		'wmskating': L.tileLayer('https://tile.waymarkedtrails.org/skating/{z}/{x}/{y}.png', {
 			name: 'wmskating', minZoom: 0, maxZoom: 18,
-			attribution: 'Trails &copy; <a href=\"http://waymarkedtrails.org/\">Waymarked Trails</a>'
+			attribution: 'Trails &copy; <a href=\"https://waymarkedtrails.org/\">Waymarked Trails</a>'
 		}),
-		'wmslopes': L.tileLayer('http://tile.waymarkedtrails.org/slopemap/{z}/{x}/{y}.png', {
+		'wmslopes': L.tileLayer('https://tile.waymarkedtrails.org/slopemap/{z}/{x}/{y}.png', {
 			name: 'wmslopes', minZoom: 0, maxZoom: 18,
-			attribution: 'Trails &copy; <a href=\"http://waymarkedtrails.org/\">Waymarked Trails</a>'
+			attribution: 'Trails &copy; <a href=\"https://waymarkedtrails.org/\">Waymarked Trails</a>'
 		})
 	};
 	// END GENERATED
