@@ -6,7 +6,15 @@
     $heitiles = $ymax-$ymin+1;
     $widpix = $widtiles*256;
     $heipix = $heitiles*256;
-    $asp=asp($widtiles,$heitiles);
+    $asp="1:1";
+    if ($widpix>$heipix)
+    {
+        $asp = sprintf("%.2f:1", $widpix/$heipix);
+    }
+    elseif($widpix<$heipix)
+    {
+        $asp = sprintf("1:%.2f", $heipix/$widpix);
+    }
 
     printf("Map is %dx%d tiles (%dx%d px) at zoom %d, aspect %s<br>",
         $widtiles,$heitiles,$widpix,$heipix,$zoom,$asp);
@@ -73,7 +81,7 @@
     echo "<td>&nbsp;</td>";
     echo str_replace('?', '?action=python&', td("Py", "left", $xmin,$xmax,$ymin,$ymax,$zoom));
     echo "<td>&nbsp;</td>";
-    echo ($xmax-$xmin+1) * ($ymax-$ymin+1) > $max_tiles ? tde("Enqueue", "left") :  str_replace('?', '?action=enqueue&', td("Enqueue", "left", $xmin,$xmax,$ymin,$ymax,$zoom));
+    echo ($xmax-$xmin+1) * ($ymax-$ymin+1) > $max_tiles ? tde("<b>Enqueue</b>", "left") :  str_replace('?', '?action=enqueue&', td("<b>Enqueue</b>", "left", $xmin,$xmax,$ymin,$ymax,$zoom));
     echo "<td>&nbsp;</td>";
     echo td("100", "left", $xmin,$xmax,$ymin,$ymax,$zoom,256);
     echo "<td>/</td>";
@@ -84,16 +92,6 @@
     echo "<td align='right'><a href=\"#\" onclick=\"getElementById('control').style.display='none';\">hide this</a></td>";
     echo "</tr></table></td></tr></table>";
     echo "</div></div>";
-
-# functions to create aspect ratio
-function gcd($a,$b) {
-    return ($a % $b) ? gcd($b,$a % $b) : $b;
-}
-
-function asp($w, $h) {
-	$gcd = gcd($w,$h);
-	return $w / $gcd . ":" . $h / $gcd;
-}
 
 # helper to display a table cell with a parametrized link inside
 function td($what, $align, $xmi, $xma, $ymi, $yma, $zm, $scl = 0) {

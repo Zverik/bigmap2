@@ -1,10 +1,11 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
 <head>
 <title>BigMap 2</title>
 <meta charset="utf-8">
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
 <style>
 body {
 	text-align: center;
@@ -70,7 +71,7 @@ function addmap() {
 			name: 'opnv', minZoom: 0, maxZoom: 18,
 			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a>'
 		}),
-		'mapsurfer': L.tileLayer('http://openmapsurfer.uni-hd.de/tiles/roads/x={x}&y={y}&z={z}', {
+		'mapsurfer': L.tileLayer('http://korona.geog.uni-heidelberg.de/tiles/roads/x={x}&y={y}&z={z}', {
 			name: 'mapsurfer', minZoom: 0, maxZoom: 19,
 			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://giscience.uni-hd.de/\">GIScience Heidelberg</a>'
 		}),
@@ -94,10 +95,6 @@ function addmap() {
 			name: 'outdoors', minZoom: 0, maxZoom: 18, subdomains: 'abc',
 			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.opencyclemap.org\">Andy Allan</a>'
 		}),
-		'mapquest': L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
-			name: 'mapquest', minZoom: 0, maxZoom: 18, subdomains: '1234',
-			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://www.mapquest.com/\">MapQuest</a>'
-		}),
 		'toner': L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
 			name: 'toner', minZoom: 0, maxZoom: 20, subdomains: 'abc',
 			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://stamen.com\">Stamen Design</a>'
@@ -109,6 +106,22 @@ function addmap() {
 		'watercolor': L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png', {
 			name: 'watercolor', minZoom: 3, maxZoom: 16, subdomains: 'abc',
 			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://stamen.com\">Stamen Design</a>'
+		}),
+		'veloroad': L.tileLayer('http://tile.osmz.ru/veloroad/{z}/{x}/{y}.png', {
+			name: 'veloroad', minZoom: 6, maxZoom: 15,
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; Ilya Zverev'
+		}),
+		'sputnik': L.tileLayer('http://{s}.tiles.maps.sputnik.ru/{z}/{x}/{y}.png', {
+			name: 'sputnik', minZoom: 0, maxZoom: 18, subdomains: 'abcd',
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://maps.sputnik.ru\">Sputnik</a>'
+		}),
+		'kosmosnimki': L.tileLayer('http://{s}.tile.osm.kosmosnimki.ru/kosmo/{z}/{x}/{y}.png', {
+			name: 'kosmosnimki', minZoom: 0, maxZoom: 17, subdomains: 'abcd',
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://osm.kosmosnimki.ru\">ScanEx</a>'
+		}),
+		'topomap': L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+			name: 'topomap', minZoom: 0, maxZoom: 17, subdomains: 'abc',
+			attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://opentopomap.org/\">OpenTopoMap</a>'
 		})
 	};
 	overlay = {
@@ -120,18 +133,50 @@ function addmap() {
 			name: 'hills', minZoom: 0, maxZoom: 15,
 			attribution: ''
 		}),
-		'contours': L.tileLayer('http://openmapsurfer.uni-hd.de/tiles/asterc/x={x}&y={y}&z={z}', {
+		'hillshade': L.tileLayer('http://korona.geog.uni-heidelberg.de/tiles/asterh/x={x}&y={y}&z={z}', {
+			name: 'hillshade', minZoom: 13, maxZoom: 17,
+			attribution: 'DEM &copy; ASTER by METI and NASA'
+		}),
+		'contours': L.tileLayer('http://korona.geog.uni-heidelberg.de/tiles/asterc/x={x}&y={y}&z={z}', {
 			name: 'contours', minZoom: 13, maxZoom: 17,
-			attribution: 'Contours &copy; <a href=\"http://giscience.uni-hd.de/\">GIScience Heidelberg</a>'
+			attribution: 'DEM &copy; ASTER by METI and NASA'
 		}),
 		'pt': L.tileLayer('http://pt.openmap.lt/{z}/{x}/{y}.png', {
 			name: 'pt', minZoom: 0, maxZoom: 18,
 			attribution: 'Routes &copy; <a href=\"http://openmap.lt\">openmap.lt</a>'
+		}),
+		'fires': L.tileLayer('http://www.openfiremap.org/hytiles/{z}/{x}/{y}.png', {
+			name: 'fires', minZoom: 0, maxZoom: 17,
+			attribution: 'Fire Hydrants &copy; <a href=\"http://www.openfiremap.org/\">OpenFireMap</a>'
+		}),
+		'wmhiking': L.tileLayer('http://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
+			name: 'wmhiking', minZoom: 0, maxZoom: 18,
+			attribution: 'Trails &copy; <a href=\"http://waymarkedtrails.org/\">Waymarked Trails</a>'
+		}),
+		'wmcycling': L.tileLayer('http://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {
+			name: 'wmcycling', minZoom: 0, maxZoom: 18,
+			attribution: 'Trails &copy; <a href=\"http://waymarkedtrails.org/\">Waymarked Trails</a>'
+		}),
+		'wmmtb': L.tileLayer('http://tile.waymarkedtrails.org/mtb/{z}/{x}/{y}.png', {
+			name: 'wmmtb', minZoom: 0, maxZoom: 18,
+			attribution: 'Trails &copy; <a href=\"http://waymarkedtrails.org/\">Waymarked Trails</a>'
+		}),
+		'wmriding': L.tileLayer('http://tile.waymarkedtrails.org/riding/{z}/{x}/{y}.png', {
+			name: 'wmriding', minZoom: 0, maxZoom: 18,
+			attribution: 'Trails &copy; <a href=\"http://waymarkedtrails.org/\">Waymarked Trails</a>'
+		}),
+		'wmskating': L.tileLayer('http://tile.waymarkedtrails.org/skating/{z}/{x}/{y}.png', {
+			name: 'wmskating', minZoom: 0, maxZoom: 18,
+			attribution: 'Trails &copy; <a href=\"http://waymarkedtrails.org/\">Waymarked Trails</a>'
+		}),
+		'wmslopes': L.tileLayer('http://tile.waymarkedtrails.org/slopemap/{z}/{x}/{y}.png', {
+			name: 'wmslopes', minZoom: 0, maxZoom: 18,
+			attribution: 'Trails &copy; <a href=\"http://waymarkedtrails.org/\">Waymarked Trails</a>'
 		})
 	};
 	// END GENERATED
 	map = L.map('map').setView([52, 11], 3);
-	var control = L.control.layers(base, overlay, { collapsed: true });
+	var control = L.control.layers(base, overlay, { collapsed: false });
 	map.addControl(control);
 	map.addLayer(base.mapnik);
 

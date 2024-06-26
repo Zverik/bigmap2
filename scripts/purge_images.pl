@@ -7,7 +7,7 @@ use strict;
 use Cwd 'abs_path';
 use File::Basename;
 
-my $limit = 100 * 1024 * 1024; # in bytes
+my $limit = 200 * 1024 * 1024; # in bytes
 my $path = abs_path(dirname(__FILE__)).'/../www/result';
 
 opendir(my $dh, $path) or die "Cannot open path $path: $!";

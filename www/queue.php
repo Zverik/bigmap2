@@ -176,7 +176,7 @@ if( preg_match('/^[a-z]+\d+$/', $taskid) ) {
 					$meta = $link.'&basename='.preg_replace('/\.\w+$/', '', $image).'&action';
 					echo "<a href=\"$imgpath/$image\">$name</a> <a href=\"$meta=ozimap\">.map</a> <a href=\"$meta=wld\">.wld</a> <a href=\"$meta=kml\">.kml</a><br>\n";
 				}
-				echo '<p>Note that images will be purged in a couple of days.</p>';
+				echo '<p>Note that images will be purged in a couple of weeks.</p>';
 			}
 		}
 	} else {

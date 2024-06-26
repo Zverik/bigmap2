@@ -149,7 +149,7 @@ sub download_tiles {
 					last;
 				}
 				my $tile = GD::Image->new($resp->content);
-				next if $tile->width == 1;
+				next if !$tile || $tile->width == 1;
 				$stat_ar->[0]++;
 				if( $url =~ /seamark/ ) {
 					my $black = $tile->colorClosest(0,0,0);
